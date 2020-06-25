@@ -1,9 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import {
   GridApi,
-  GridOptions,
-  GridReadyEvent,
-  ColumnApi
+  GridOptions
 } from 'ag-grid-community';
 import { GridColumns } from './grid-columns';
 
@@ -22,8 +20,7 @@ const data = [
   styleUrls: ['grid.component.scss']
 })
 export class GridComponent  {
-  private _gridApi: GridApi;
-  private _columnApi: ColumnApi
+  private gridApi: GridApi;
 
   rowData = data;
   columnDefs = GridColumns;
@@ -38,7 +35,7 @@ export class GridComponent  {
   }
 
   onGridReady(params): void {
-    this._gridApi = params.api;
-    this._columnApi = params.columnApi;
+    this.gridApi = params.api;
+    this.gridApi.sizeColumnsToFit();
   }
 }
